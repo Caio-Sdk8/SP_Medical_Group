@@ -1,4 +1,4 @@
-USE SP_MEDICAL_GROUP;
+USE SP_MEDICAL_GROUP_CSDMANHA;
 GO
 
 ---Busca das consultas de determinado médico
