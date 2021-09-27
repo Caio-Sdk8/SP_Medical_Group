@@ -7539,11 +7539,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fic\\Desktop\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\fic\\Desktop\\Caio2DM\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi.csproj",
       "projectName": "SpMedicalGroup.WebApi",
-      "projectPath": "C:\\Users\\fic\\Desktop\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi.csproj",
+      "projectPath": "C:\\Users\\fic\\Desktop\\Caio2DM\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi.csproj",
       "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fic\\Desktop\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\obj\\",
+      "outputPath": "C:\\Users\\fic\\Desktop\\Caio2DM\\SP_Medical_Group\\Back-End\\SpMedicalGroup.WebApi\\SpMedicalGroup.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
