@@ -35,6 +35,17 @@ namespace SpMedicalGroup.WebApi.Repositories
             ctx.SaveChanges();
         }
 
+        public void cancelar(int idConsulta)
+        {
+            consultum consulta = BuscarPorId(idConsulta);
+
+            consulta.idSituacao = 3;
+
+            ctx.consulta.Update(consulta);
+
+            ctx.SaveChanges();
+        }
+
         public void Atualizar(int idConsulta, consultum consultaAtualizada)
         {
             consultum consultaBusc = BuscarPorId(idConsulta);
@@ -103,7 +114,7 @@ namespace SpMedicalGroup.WebApi.Repositories
             }).ToList();
         }
 
-        public List<consultum> listarMinhasPac(int idPaciente)
+        public List<consultum> listarMinhasPac(int idUsuario)
         {
             return ctx.consulta.Select(x => new consultum
             {
@@ -129,7 +140,7 @@ namespace SpMedicalGroup.WebApi.Repositories
                         nomeUsuario = x.idMedicoNavigation.idUsuarioNavigation.nomeUsuario
                     }
                 },
-            }).Where(x => x.idPaciente == idPaciente).ToList();
+            }).Where(x => x.idPacienteNavigation.idUsuario == idUsuario || x.idMedicoNavigation.idUsuario == idUsuario).ToList();
         }
     }
 }

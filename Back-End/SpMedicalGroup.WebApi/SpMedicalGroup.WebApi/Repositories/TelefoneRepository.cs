@@ -13,27 +13,56 @@ namespace SpMedicalGroup.WebApi.Repositories
         SpMedicalGpContext ctx = new SpMedicalGpContext();
         public void Atualizar(int idTelefone, telefone TelefoneAtualizado)
         {
-            throw new NotImplementedException();
+            telefone telefoneBusc = BuscarPorId(idTelefone);
+
+            if(TelefoneAtualizado.numeroTelefone != null)
+            {
+                telefoneBusc.numeroTelefone = TelefoneAtualizado.numeroTelefone;
+            }
+            if(TelefoneAtualizado.idPaciente != null)
+            {
+                telefoneBusc.idPaciente = TelefoneAtualizado.idPaciente;
+            }
+
+            ctx.telefones.Update(telefoneBusc);
+
+            ctx.SaveChanges();
         }
 
         public telefone BuscarPorId(int idTelefone)
         {
-            throw new NotImplementedException();
+            return ctx.telefones.FirstOrDefault(ab => ab.idTelefone == idTelefone);
         }
 
         public void Cadastrar(telefone novoTelefone)
         {
-            throw new NotImplementedException();
+            ctx.telefones.Add(novoTelefone);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idTelefone)
         {
-            throw new NotImplementedException();
+            telefone telefoneBusc = BuscarPorId(idTelefone);
+
+            ctx.telefones.Add(telefoneBusc);
+
+            ctx.SaveChanges();
         }
 
         public List<telefone> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.telefones.Select(x => new telefone { 
+             idTelefone = x.idTelefone,
+             idPacienteNavigation = new paciente
+             {
+                 idUsuarioNavigation = new usuario
+                 {
+                     nomeUsuario = x.idPacienteNavigation.idUsuarioNavigation.nomeUsuario
+                 }
+             },
+             numeroTelefone = x.numeroTelefone
+            }).ToList();
         }
     }
 }

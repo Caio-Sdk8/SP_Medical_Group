@@ -9,6 +9,9 @@ namespace SpMedicalGroup.WebApi.Interfaces
     interface IConsultumRepository
     {
         public void alterarSituacao(int idConsulta, short idSituacao);
+
+        public void cancelar(int idConsulta);
+
         public void adicionarDescricao(int consulta, string consultaDesc);
 
         List<consultum> listarMinhasPac(int idPaciente);

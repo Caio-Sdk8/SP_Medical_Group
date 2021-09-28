@@ -13,27 +13,42 @@ namespace SpMedicalGroup.WebApi.Repositories
         SpMedicalGpContext ctx = new SpMedicalGpContext();
         public void Atualizar(int idSituacao, situacao SituacaoAtualizada)
         {
-            throw new NotImplementedException();
+            situacao situacaoBusc = BuscarPorId(idSituacao);
+
+            if(SituacaoAtualizada.descricaoSituacao != null)
+            {
+                situacaoBusc.descricaoSituacao = SituacaoAtualizada.descricaoSituacao;
+            }
+
+            ctx.situacaos.Update(situacaoBusc);
+
+            ctx.SaveChanges();
         }
 
         public situacao BuscarPorId(int idSituacao)
         {
-            throw new NotImplementedException();
+            return ctx.situacaos.FirstOrDefault(ab => ab.idSituacao == idSituacao);
         }
 
         public void Cadastrar(situacao novaSituacao)
         {
-            throw new NotImplementedException();
+            ctx.situacaos.Add(novaSituacao);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idSituacao)
         {
-            throw new NotImplementedException();
+            situacao situcaoBusc = BuscarPorId(idSituacao);
+
+            ctx.situacaos.Add(situcaoBusc);
+
+            ctx.SaveChanges();
         }
 
         public List<situacao> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.situacaos.ToList();
         }
     }
 }

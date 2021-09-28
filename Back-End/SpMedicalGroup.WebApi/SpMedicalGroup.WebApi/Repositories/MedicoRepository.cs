@@ -13,27 +13,56 @@ namespace SpMedicalGroup.WebApi.Repositories
         SpMedicalGpContext ctx = new SpMedicalGpContext();
         public void Atualizar(int idMedico, medico MedicoAtualizado)
         {
-            throw new NotImplementedException();
+            medico medicoBusc = BuscarPorId(idMedico);
+
+            medicoBusc.idClinica = MedicoAtualizado.idClinica;
+
+            ctx.medicos.Update(medicoBusc);
+
+            ctx.SaveChanges();
         }
 
         public medico BuscarPorId(int idMedico)
         {
-            throw new NotImplementedException();
+            return ctx.medicos.FirstOrDefault(ab => ab.idMedico == idMedico);
         }
 
         public void Cadastrar(medico novoMedico)
         {
-            throw new NotImplementedException();
+            ctx.medicos.Add(novoMedico);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idMedico)
         {
-            throw new NotImplementedException();
+            medico medicoBuscado = BuscarPorId(idMedico);
+
+            ctx.medicos.Add(medicoBuscado);
+
+            ctx.SaveChanges();
         }
 
         public List<medico> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.medicos.Select(x => new medico
+            {
+                idMedico = x.idMedico,
+                idClinicaNavigation = new clinica
+                {
+                    nomeClinica = x.idClinicaNavigation.nomeClinica
+                },
+                idUsuarioNavigation = new usuario
+                {
+                    nomeUsuario = x.idUsuarioNavigation.nomeUsuario,
+                    emailUsuario = x.idUsuarioNavigation.emailUsuario,
+                },
+                idEspecialidadeNavigation = new especialidade
+                {
+                    nomeEspecialidade = x.idEspecialidadeNavigation.nomeEspecialidade
+                },
+                crm = x.crm,
+            }).ToList();
         }
     }
 }

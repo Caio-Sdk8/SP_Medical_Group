@@ -13,27 +13,61 @@ namespace SpMedicalGroup.WebApi.Repositories
         SpMedicalGpContext ctx = new SpMedicalGpContext();
         public void Atualizar(int idPaciente, paciente PacienteAtualizado)
         {
-            throw new NotImplementedException();
+            paciente pacienteBusc = BuscarPorId(idPaciente);
+
+            pacienteBusc.idUsuario = PacienteAtualizado.idUsuario;
+
+            if(PacienteAtualizado.rgPaciente != null) 
+            {
+                pacienteBusc.rgPaciente = PacienteAtualizado.rgPaciente;
+            }
+            if (PacienteAtualizado.cpfPaciente != null) 
+            {
+                pacienteBusc.cpfPaciente = PacienteAtualizado.cpfPaciente;
+            }
+
+            pacienteBusc.dataNascimento = PacienteAtualizado.dataNascimento;
+
+            ctx.pacientes.Update(pacienteBusc);
+
+            ctx.SaveChanges();
         }
 
         public paciente BuscarPorId(int idPaciente)
         {
-            throw new NotImplementedException();
+            return ctx.pacientes.FirstOrDefault(ab => ab.idPaciente == idPaciente);
         }
 
         public void Cadastrar(paciente novoPaciente)
         {
-            throw new NotImplementedException();
+            ctx.pacientes.Add(novoPaciente);
+
+            ctx.SaveChanges();
         }
 
         public void Deletar(int idPaciente)
         {
-            throw new NotImplementedException();
+            paciente pacienteBuscado = BuscarPorId(idPaciente);
+
+            ctx.pacientes.Add(pacienteBuscado);
+
+            ctx.SaveChanges();
         }
 
         public List<paciente> Listar()
         {
-            throw new NotImplementedException();
+            return ctx.pacientes.Select(x => new paciente
+            {
+                idPaciente = x.idPaciente,
+                rgPaciente = x.rgPaciente,
+                idUsuarioNavigation = new usuario
+                {
+                    nomeUsuario = x.idUsuarioNavigation.nomeUsuario,
+                    emailUsuario = x.idUsuarioNavigation.emailUsuario,
+                },
+                cpfPaciente = x.cpfPaciente,
+                dataNascimento = x.dataNascimento
+            }).ToList();
         }
     }
 }
