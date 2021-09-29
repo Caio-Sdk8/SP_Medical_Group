@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
@@ -22,11 +23,13 @@ namespace SpMedicalGroup.WebApi.Controllers
             _clinicaRepository = new ClinicaRepository();
         }
 
+
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(_clinicaRepository.Listar());
         }
+
 
         [HttpGet("{idclinica}")]
         public IActionResult BuscarPorId(int idclinica)
@@ -34,22 +37,25 @@ namespace SpMedicalGroup.WebApi.Controllers
             return Ok(_clinicaRepository.BuscarPorId(idclinica));
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Cadastrar(clinica novaclinica)
+        public IActionResult Cadastrar(Clinica novaclinica)
         {
             _clinicaRepository.Cadastrar(novaclinica);
 
             return StatusCode(201);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPut("{idclinica}")]
-        public IActionResult Atualizar(int idclinica, clinica clinicaAtualizada)
+        public IActionResult Atualizar(int idclinica, Clinica clinicaAtualizada)
         {
             _clinicaRepository.Atualizar(idclinica, clinicaAtualizada);
 
             return StatusCode(204);
         }
 
+        [Authorize(Roles = "1")]
         [HttpDelete("{idclinica}")]
         public IActionResult Deletar(int idclinica)
         {

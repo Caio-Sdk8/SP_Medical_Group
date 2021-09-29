@@ -2,6 +2,7 @@
 using SpMedicalGroup.WebApi.Contexts;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,32 +13,47 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class AdministradorRepository : IAdministradorRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idAdministrador, administrador AdministradorAtualizado)
+        UsuarioRepository usuarioPrafzr = new UsuarioRepository();
+        public void Atualizar(int idAdministrador, Administrador AdministradorAtualizado)
         {
-            administrador adminBuscado = BuscarPorId(idAdministrador);
+            Administrador AdminBuscado = BuscarPorId(idAdministrador);
 
-            if (AdministradorAtualizado.rgAdministrador != null)
+            if (AdministradorAtualizado.RgAdministrador != null)
             {
-                adminBuscado.rgAdministrador = AdministradorAtualizado.rgAdministrador;
+                AdminBuscado.RgAdministrador = AdministradorAtualizado.RgAdministrador;
             }
-            if (AdministradorAtualizado.cpfAdministrador != null)
+            if (AdministradorAtualizado.CpfAdministrador != null)
             {
-                adminBuscado.cpfAdministrador = AdministradorAtualizado.cpfAdministrador;
+                AdminBuscado.CpfAdministrador = AdministradorAtualizado.CpfAdministrador;
             }
 
-            ctx.administradors.Update(adminBuscado);
+            ctx.Administradors.Update(AdminBuscado);
 
             ctx.SaveChanges();
         }
 
-        public administrador BuscarPorId(int idAdministrador)
+        public Administrador BuscarPorId(int idAdministrador)
         {
-            return ctx.administradors.FirstOrDefault(ab => ab.idAdministrador == idAdministrador);
+            return ctx.Administradors.FirstOrDefault(ab => ab.IdAdministrador == idAdministrador);
         }
 
-        public void Cadastrar(administrador novoAdministrador)
+        public void Cadastrar(AdminViewModel admin)
         {
-            ctx.administradors.Add(novoAdministrador);
+            Administrador adm = new Administrador();
+            Usuario u = new Usuario();
+
+            u.EmailUsuario = admin.EmailUsuario;
+            u.IdTipoUsuario = admin.IdTipoUsuario;
+            u.SenhaUsuario = admin.SenhaUsuario;
+            u.NomeUsuario = admin.NomeUsuario;
+
+            usuarioPrafzr.Cadastrar(u);
+
+            adm.RgAdministrador = admin.RgAdministrador;
+            adm.CpfAdministrador = admin.CpfAdministrador;
+            adm.IdUsuario = u.IdUsuario;
+
+            ctx.Administradors.Add(adm);
 
             ctx.SaveChanges();
         }
@@ -45,24 +61,28 @@ namespace SpMedicalGroup.WebApi.Repositories
         public void Deletar(int idAdministrador)
         {
 
-            administrador adminBuscado = BuscarPorId(idAdministrador);
+            Administrador adminBuscado = BuscarPorId(idAdministrador);
 
-            ctx.administradors.Add(adminBuscado);
+            int idUsuario = adminBuscado.IdUsuario;
+
+            ctx.Administradors.Remove(adminBuscado);
 
             ctx.SaveChanges();
+
+            usuarioPrafzr.Deletar(idUsuario);
         }
 
-        public List<administrador> Listar()
+        public List<Administrador> Listar()
         {
-            return ctx.administradors.Select(x => new administrador
+            return ctx.Administradors.Select(x => new Administrador
             {
-                idAdministrador = x.idAdministrador,
-                cpfAdministrador = x.cpfAdministrador,
-                rgAdministrador = x.rgAdministrador,
-                idUsuarioNavigation = new usuario
+                IdAdministrador = x.IdAdministrador,
+                CpfAdministrador = x.CpfAdministrador,
+                RgAdministrador = x.RgAdministrador,
+                IdUsuarioNavigation = new Usuario
                 {
-                    nomeUsuario = x.idUsuarioNavigation.nomeUsuario,
-                    emailUsuario = x.idUsuarioNavigation.emailUsuario
+                    NomeUsuario = x.IdUsuarioNavigation.NomeUsuario,
+                    EmailUsuario = x.IdUsuarioNavigation.EmailUsuario
                 }
             }).ToList();
         }

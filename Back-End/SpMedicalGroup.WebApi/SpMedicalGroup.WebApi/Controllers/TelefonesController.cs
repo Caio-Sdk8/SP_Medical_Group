@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
@@ -22,34 +23,39 @@ namespace SpMedicalGroup.WebApi.Controllers
             _TelefoneRepository = new TelefoneRepository();
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(_TelefoneRepository.Listar());
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet("{idTelefone}")]
         public IActionResult BuscarPorId(int idTelefone)
         {
             return Ok(_TelefoneRepository.BuscarPorId(idTelefone));
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Cadastrar(telefone novaTelefone)
+        public IActionResult Cadastrar(Telefone novaTelefone)
         {
             _TelefoneRepository.Cadastrar(novaTelefone);
 
             return StatusCode(201);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPut("{idTelefone}")]
-        public IActionResult Atualizar(int idTelefone, telefone TelefoneAtualizada)
+        public IActionResult Atualizar(int idTelefone, Telefone TelefoneAtualizada)
         {
             _TelefoneRepository.Atualizar(idTelefone, TelefoneAtualizada);
 
             return StatusCode(204);
         }
 
+        [Authorize(Roles = "1")]
         [HttpDelete("{idTelefone}")]
         public IActionResult Deletar(int idTelefone)
         {

@@ -12,77 +12,77 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class ClinicaRepository : IClinicaRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idClinica, clinica ClinicaAtualizada)
+        public void Atualizar(int idClinica, Clinica ClinicaAtualizada)
         {
-            clinica clinicaBuscada = BuscarPorId(idClinica);
+            Clinica ClinicaBuscada = BuscarPorId(idClinica);
 
-            if (ClinicaAtualizada.nomeClinica != null)
+            if (ClinicaAtualizada.NomeClinica != null)
             {
-                clinicaBuscada.nomeClinica = ClinicaAtualizada.nomeClinica;
+                ClinicaBuscada.NomeClinica = ClinicaAtualizada.NomeClinica;
             }
-            if (ClinicaAtualizada.razaoSocial != null)
+            if (ClinicaAtualizada.RazaoSocial != null)
             {
-                clinicaBuscada.razaoSocial = ClinicaAtualizada.razaoSocial;
+                ClinicaBuscada.RazaoSocial = ClinicaAtualizada.RazaoSocial;
             }
-            if (ClinicaAtualizada.cnpj != null)
+            if (ClinicaAtualizada.Cnpj != null)
             {
-                clinicaBuscada.cnpj = ClinicaAtualizada.cnpj;
+                ClinicaBuscada.Cnpj = ClinicaAtualizada.Cnpj;
             }
-            if (ClinicaAtualizada.enderecoClinica != null)
+            if (ClinicaAtualizada.EnderecoClinica != null)
             {
-                clinicaBuscada.enderecoClinica = ClinicaAtualizada.enderecoClinica;
+                ClinicaBuscada.EnderecoClinica = ClinicaAtualizada.EnderecoClinica;
             }
 
-            clinicaBuscada.dataFinal = ClinicaAtualizada.dataFinal;
-            clinicaBuscada.horarioInicial = ClinicaAtualizada.horarioInicial;
+            ClinicaBuscada.DataFinal = ClinicaAtualizada.DataFinal;
+            ClinicaBuscada.HorarioInicial = ClinicaAtualizada.HorarioInicial;
 
-            ctx.clinicas.Update(clinicaBuscada);
+            ctx.Clinicas.Update(ClinicaBuscada);
 
             ctx.SaveChanges();
         }
 
-        public clinica BuscarPorId(int idClinica)
+        public Clinica BuscarPorId(int idClinica)
         {
-            return ctx.clinicas.FirstOrDefault(ab => ab.idClinica == idClinica);
+            return ctx.Clinicas.FirstOrDefault(ab => ab.IdClinica == idClinica);
         }
 
-        public void Cadastrar(clinica novaClinica)
+        public void Cadastrar(Clinica novaClinica)
         {
-            ctx.clinicas.Add(novaClinica);
+            ctx.Clinicas.Add(novaClinica);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idClinica)
         {
-            clinica clinicaBuscada = BuscarPorId(idClinica);
+            Clinica ClinicaBuscada = BuscarPorId(idClinica);
 
-            ctx.clinicas.Add(clinicaBuscada);
+            ctx.Clinicas.Remove(ClinicaBuscada);
 
             ctx.SaveChanges();
         }
 
-        public List<clinica> Listar()
+        public List<Clinica> Listar()
         {
-            return ctx.clinicas.Select(x => new clinica
+            return ctx.Clinicas.Select(x => new Clinica
             {
-                idClinica = x.idClinica,
-                nomeClinica = x.nomeClinica,
-                razaoSocial = x.razaoSocial,
-                cnpj = x.cnpj,
-                enderecoClinica = x.enderecoClinica,
-                dataFinal = x.dataFinal,
-                horarioInicial = x.horarioInicial,
-                idAdministradorNavigation = new administrador
+                IdClinica = x.IdClinica,
+                NomeClinica = x.NomeClinica,
+                RazaoSocial = x.RazaoSocial,
+                Cnpj = x.Cnpj,
+                EnderecoClinica = x.EnderecoClinica,
+                DataFinal = x.DataFinal,
+                HorarioInicial = x.HorarioInicial,
+                IdAdministradorNavigation = new Administrador
                 {
-                    idUsuarioNavigation = new usuario
+                    IdUsuarioNavigation = new Usuario
                     {
-                        nomeUsuario = x.idAdministradorNavigation.idUsuarioNavigation.nomeUsuario,
-                        emailUsuario = x.idAdministradorNavigation.idUsuarioNavigation.emailUsuario
+                        NomeUsuario = x.IdAdministradorNavigation.IdUsuarioNavigation.NomeUsuario,
+                        EmailUsuario = x.IdAdministradorNavigation.IdUsuarioNavigation.EmailUsuario
                     }
                 }
 
-            }).Include(a => a.idAdministradorNavigation.idUsuarioNavigation).ToList();
+            }).Include(a => a.IdAdministradorNavigation.IdUsuarioNavigation).ToList();
         }
     }
 }

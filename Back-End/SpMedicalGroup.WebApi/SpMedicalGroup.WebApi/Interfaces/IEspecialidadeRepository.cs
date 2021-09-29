@@ -8,13 +8,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface IEspecialidadeRepository
     {
-        List<especialidade> Listar();
+        List<Especialidade> Listar();
 
-        especialidade BuscarPorId(int idEspecialidade);
+        Especialidade BuscarPorId(int idEspecialidade);
 
-        void Cadastrar(especialidade novaEspecialidade);
+        void Cadastrar(Especialidade novaEspecialidade);
 
-        void Atualizar(int idEspecialidade, especialidade EspecialidadeAtualizada);
+        void Atualizar(int idEspecialidade, Especialidade EspecialidadeAtualizada);
 
         void Deletar(int idEspecialidade);
     }

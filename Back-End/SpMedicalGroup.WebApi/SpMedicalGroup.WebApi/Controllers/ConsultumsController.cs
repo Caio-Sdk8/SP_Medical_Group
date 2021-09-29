@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
@@ -22,34 +23,38 @@ namespace SpMedicalGroup.WebApi.Controllers
             _ConsultumRepository = new ConsultumRepository();
         }
 
+        [Authorize(Roles = "3,2")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(_ConsultumRepository.Listar());
         }
 
+        [Authorize(Roles = "3,2")]
         [HttpGet("{idConsultum}")]
         public IActionResult BuscarPorId(int idConsultum)
         {
             return Ok(_ConsultumRepository.BuscarPorId(idConsultum));
         }
-
+        [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Cadastrar(consultum novaConsultum)
+        public IActionResult Cadastrar(Consultum novaConsultum)
         {
             _ConsultumRepository.Cadastrar(novaConsultum);
 
             return StatusCode(201);
         }
 
+        [Authorize(Roles = "1,3")]
         [HttpPut("{idConsultum}")]
-        public IActionResult Atualizar(int idConsultum, consultum ConsultumAtualizada)
+        public IActionResult Atualizar(int idConsultum, Consultum ConsultumAtualizada)
         {
             _ConsultumRepository.Atualizar(idConsultum, ConsultumAtualizada);
 
             return StatusCode(204);
         }
 
+        [Authorize(Roles = "1")]
         [HttpDelete("{idConsultum}")]
         public IActionResult Deletar(int idConsultum)
         {

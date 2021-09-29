@@ -5,15 +5,17 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class usuario
+    public partial class Usuario
     {
-        public short idUsuario { get; set; }
-        public string nomeUsuario { get; set; }
-        public string emailUsuario { get; set; }
-        public string senhaUsuario { get; set; }
+        public short IdUsuario { get; set; }
+        public string NomeUsuario { get; set; }
+        public string EmailUsuario { get; set; }
+        public string SenhaUsuario { get; set; }
+        public short? IdTipoUsuario { get; set; }
 
-        public virtual administrador administrador { get; set; }
-        public virtual medico medico { get; set; }
-        public virtual paciente paciente { get; set; }
+        public virtual TipoUsuario IdTipoUsuarioNavigation { get; set; }
+        public virtual Administrador Administrador { get; set; }
+        public virtual Medico Medico { get; set; }
+        public virtual Paciente Paciente { get; set; }
     }
 }

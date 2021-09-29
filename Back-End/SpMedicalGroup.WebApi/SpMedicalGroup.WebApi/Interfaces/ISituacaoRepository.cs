@@ -8,13 +8,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface ISituacaoRepository
     {
-        List<situacao> Listar();
+        List<Situacao> Listar();
 
-        situacao BuscarPorId(int idSituacao);
+        Situacao BuscarPorId(int idSituacao);
 
-        void Cadastrar(situacao novaSituacao);
+        void Cadastrar(Situacao novaSituacao);
 
-        void Atualizar(int idSituacao, situacao SituacaoAtualizada);
+        void Atualizar(int idSituacao, Situacao SituacaoAtualizada);
 
         void Deletar(int idSituacao);
     }

@@ -10,19 +10,17 @@ namespace SpMedicalGroup.WebApi.Interfaces
     {
         public void alterarSituacao(int idConsulta, short idSituacao);
 
-        public void cancelar(int idConsulta);
-
         public void adicionarDescricao(int consulta, string consultaDesc);
 
-        List<consultum> listarMinhasPac(int idPaciente);
+        List<Consultum> listarMinhas(int idPaciente);
 
-        List<consultum> Listar();
+        List<Consultum> Listar();
 
-        consultum BuscarPorId(int idConsulta);
+        Consultum BuscarPorId(int idConsulta);
 
-        void Cadastrar(consultum novaConsulta);
+        void Cadastrar(Consultum novaConsulta);
 
-        void Atualizar(int idConsulta, consultum consultaAtualizada);
+        void Atualizar(int idConsulta, Consultum consultaAtualizada);
 
         void Deletar(int idConsulta);
     }

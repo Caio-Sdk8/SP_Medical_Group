@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class consultum
+    public partial class Consultum
     {
-        public short idConsulta { get; set; }
-        public short idMedico { get; set; }
-        public short idSituacao { get; set; }
-        public short idPaciente { get; set; }
-        public DateTime dataConsulta { get; set; }
-        public TimeSpan horarioConsulta { get; set; }
-        public string descricaoConsulta { get; set; }
+        public short IdConsulta { get; set; }
+        public short IdMedico { get; set; }
+        public short IdSituacao { get; set; }
+        public short IdPaciente { get; set; }
+        public DateTime DataConsulta { get; set; }
+        public TimeSpan HorarioConsulta { get; set; }
+        public string DescricaoConsulta { get; set; }
 
-        public virtual medico idMedicoNavigation { get; set; }
-        public virtual paciente idPacienteNavigation { get; set; }
-        public virtual situacao idSituacaoNavigation { get; set; }
+        public virtual Medico IdMedicoNavigation { get; set; }
+        public virtual Paciente IdPacienteNavigation { get; set; }
+        public virtual Situacao IdSituacaoNavigation { get; set; }
     }
 }

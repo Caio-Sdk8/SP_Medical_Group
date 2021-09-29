@@ -11,57 +11,57 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class TelefoneRepository : ITelefoneRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idTelefone, telefone TelefoneAtualizado)
+        public void Atualizar(int idTelefone, Telefone TelefoneAtualizado)
         {
-            telefone telefoneBusc = BuscarPorId(idTelefone);
+            Telefone TelefoneBusc = BuscarPorId(idTelefone);
 
-            if(TelefoneAtualizado.numeroTelefone != null)
+            if(TelefoneAtualizado.NumeroTelefone != null)
             {
-                telefoneBusc.numeroTelefone = TelefoneAtualizado.numeroTelefone;
+                TelefoneBusc.NumeroTelefone = TelefoneAtualizado.NumeroTelefone;
             }
-            if(TelefoneAtualizado.idPaciente != null)
+            if(TelefoneAtualizado.IdPaciente != null)
             {
-                telefoneBusc.idPaciente = TelefoneAtualizado.idPaciente;
+                TelefoneBusc.IdPaciente = TelefoneAtualizado.IdPaciente;
             }
 
-            ctx.telefones.Update(telefoneBusc);
+            ctx.Telefones.Update(TelefoneBusc);
 
             ctx.SaveChanges();
         }
 
-        public telefone BuscarPorId(int idTelefone)
+        public Telefone BuscarPorId(int idTelefone)
         {
-            return ctx.telefones.FirstOrDefault(ab => ab.idTelefone == idTelefone);
+            return ctx.Telefones.FirstOrDefault(ab => ab.IdTelefone == idTelefone);
         }
 
-        public void Cadastrar(telefone novoTelefone)
+        public void Cadastrar(Telefone novoTelefone)
         {
-            ctx.telefones.Add(novoTelefone);
+            ctx.Telefones.Add(novoTelefone);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idTelefone)
         {
-            telefone telefoneBusc = BuscarPorId(idTelefone);
+            Telefone TelefoneBusc = BuscarPorId(idTelefone);
 
-            ctx.telefones.Add(telefoneBusc);
+            ctx.Telefones.Remove(TelefoneBusc);
 
             ctx.SaveChanges();
         }
 
-        public List<telefone> Listar()
+        public List<Telefone> Listar()
         {
-            return ctx.telefones.Select(x => new telefone { 
-             idTelefone = x.idTelefone,
-             idPacienteNavigation = new paciente
+            return ctx.Telefones.Select(x => new Telefone { 
+             IdTelefone = x.IdTelefone,
+             IdPacienteNavigation = new Paciente
              {
-                 idUsuarioNavigation = new usuario
+                 IdUsuarioNavigation = new Usuario
                  {
-                     nomeUsuario = x.idPacienteNavigation.idUsuarioNavigation.nomeUsuario
+                     NomeUsuario = x.IdPacienteNavigation.IdUsuarioNavigation.NomeUsuario
                  }
              },
-             numeroTelefone = x.numeroTelefone
+             NumeroTelefone = x.NumeroTelefone
             }).ToList();
         }
     }

@@ -1,4 +1,5 @@
 ﻿using SpMedicalGroup.WebApi.Domains;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,15 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface IUsuarioRepository
     {
-        List<usuario> Listar();
+        List<Usuario> Listar();
 
-        usuario BuscarPorId(int idUsuario);
+        public Usuario Login(string email, string senha);
 
-        void Cadastrar(usuario novoUsuario);
+        Usuario BuscarPorId(int idUsuario);
 
-        void Atualizar(int idUsuario, usuario UsuarioAtualizado);
+        void Cadastrar(Usuario novoUsuario);
+
+        void Atualizar(int idUsuario, Usuario UsuarioAtualizado);
 
         void Deletar(int idUsuario);
     }

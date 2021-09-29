@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class telefone
+    public partial class Telefone
     {
-        public short idTelefone { get; set; }
-        public short? idPaciente { get; set; }
-        public string numeroTelefone { get; set; }
+        public short IdTelefone { get; set; }
+        public short? IdPaciente { get; set; }
+        public string NumeroTelefone { get; set; }
 
-        public virtual paciente idPacienteNavigation { get; set; }
+        public virtual Paciente IdPacienteNavigation { get; set; }
     }
 }

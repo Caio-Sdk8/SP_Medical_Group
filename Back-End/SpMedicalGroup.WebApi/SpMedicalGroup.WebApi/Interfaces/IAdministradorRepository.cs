@@ -1,4 +1,5 @@
 ﻿using SpMedicalGroup.WebApi.Domains;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface IAdministradorRepository
     {
-        List<administrador> Listar();
+        List<Administrador> Listar();
 
-        administrador BuscarPorId(int idAdministrador);
+        Administrador BuscarPorId(int idAdministrador);
 
-        void Cadastrar(administrador novoAdministrador);
+        void Cadastrar(AdminViewModel admin);
 
-        void Atualizar(int idAdministrador, administrador AdministradorAtualizado);
+        void Atualizar(int idAdministrador, Administrador AdministradorAtualizado);
 
         void Deletar(int idAdministrador);
     }

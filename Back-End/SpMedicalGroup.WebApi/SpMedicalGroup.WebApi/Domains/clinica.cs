@@ -1,29 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class clinica
+    public partial class Clinica
     {
-        public clinica()
+        public Clinica()
         {
-            medicos = new HashSet<medico>();
+            Medicos = new HashSet<Medico>();
         }
 
-        public short idClinica { get; set; }
-        public short idAdministrador { get; set; }
-        public string nomeClinica { get; set; }
-        public string razaoSocial { get; set; }
-        public string cnpj { get; set; }
-        public string enderecoClinica { get; set; }
-        [Required]
-        public TimeSpan horarioInicial { get; set; }
-        public TimeSpan dataFinal { get; set; }
+        public short IdClinica { get; set; }
+        public short IdAdministrador { get; set; }
+        public string NomeClinica { get; set; }
+        public string RazaoSocial { get; set; }
+        public string Cnpj { get; set; }
+        public string EnderecoClinica { get; set; }
+        public TimeSpan HorarioInicial { get; set; }
+        public TimeSpan DataFinal { get; set; }
 
-        public virtual administrador idAdministradorNavigation { get; set; }
-        public virtual ICollection<medico> medicos { get; set; }
+        public virtual Administrador IdAdministradorNavigation { get; set; }
+        public virtual ICollection<Medico> Medicos { get; set; }
     }
 }

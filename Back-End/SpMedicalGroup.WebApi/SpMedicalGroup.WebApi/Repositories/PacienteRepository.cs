@@ -11,62 +11,72 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class PacienteRepository : IPacienteRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idPaciente, paciente PacienteAtualizado)
+        UsuarioRepository usuarioPrafzr = new UsuarioRepository();
+        
+        public void Atualizar(int idPaciente, Paciente PacienteAtualizado)
         {
-            paciente pacienteBusc = BuscarPorId(idPaciente);
+            Paciente PacienteBusc = BuscarPorId(idPaciente);
 
-            pacienteBusc.idUsuario = PacienteAtualizado.idUsuario;
+            PacienteBusc.IdUsuario = PacienteAtualizado.IdUsuario;
 
-            if(PacienteAtualizado.rgPaciente != null) 
+            if(PacienteAtualizado.RgPaciente != null) 
             {
-                pacienteBusc.rgPaciente = PacienteAtualizado.rgPaciente;
+                PacienteBusc.RgPaciente = PacienteAtualizado.RgPaciente;
             }
-            if (PacienteAtualizado.cpfPaciente != null) 
+            if (PacienteAtualizado.CpfPaciente != null) 
             {
-                pacienteBusc.cpfPaciente = PacienteAtualizado.cpfPaciente;
+                PacienteBusc.CpfPaciente = PacienteAtualizado.CpfPaciente;
             }
 
-            pacienteBusc.dataNascimento = PacienteAtualizado.dataNascimento;
+            PacienteBusc.DataNascimento = PacienteAtualizado.DataNascimento;
 
-            ctx.pacientes.Update(pacienteBusc);
+            ctx.Pacientes.Update(PacienteBusc);
 
             ctx.SaveChanges();
         }
 
-        public paciente BuscarPorId(int idPaciente)
+        public Paciente BuscarPorId(int idPaciente)
         {
-            return ctx.pacientes.FirstOrDefault(ab => ab.idPaciente == idPaciente);
+            return ctx.Pacientes.FirstOrDefault(ab => ab.IdPaciente == idPaciente);
         }
 
-        public void Cadastrar(paciente novoPaciente)
+        public void Cadastrar(Paciente novoPaciente, Usuario novoUsuario)
         {
-            ctx.pacientes.Add(novoPaciente);
+            usuarioPrafzr.Cadastrar(novoUsuario);
+
+            novoPaciente.IdUsuario = novoUsuario.IdUsuario;
+
+            ctx.Pacientes.Add(novoPaciente);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idPaciente)
         {
-            paciente pacienteBuscado = BuscarPorId(idPaciente);
+            Paciente PacienteBuscado = BuscarPorId(idPaciente);
 
-            ctx.pacientes.Add(pacienteBuscado);
+            int idUsuario = PacienteBuscado.IdUsuario;
+
+            ctx.Pacientes.Remove(PacienteBuscado);
 
             ctx.SaveChanges();
+
+            usuarioPrafzr.Deletar(idUsuario);
         }
 
-        public List<paciente> Listar()
+        public List<Paciente> Listar()
         {
-            return ctx.pacientes.Select(x => new paciente
+            return ctx.Pacientes.Select(x => new Paciente
             {
-                idPaciente = x.idPaciente,
-                rgPaciente = x.rgPaciente,
-                idUsuarioNavigation = new usuario
+                IdPaciente = x.IdPaciente,
+                RgPaciente = x.RgPaciente,
+                IdUsuarioNavigation = new Usuario
                 {
-                    nomeUsuario = x.idUsuarioNavigation.nomeUsuario,
-                    emailUsuario = x.idUsuarioNavigation.emailUsuario,
+                    NomeUsuario = x.IdUsuarioNavigation.NomeUsuario,
+                    EmailUsuario = x.IdUsuarioNavigation.EmailUsuario,
                 },
-                cpfPaciente = x.cpfPaciente,
-                dataNascimento = x.dataNascimento
+                CpfPaciente = x.CpfPaciente,
+                DataNascimento = x.DataNascimento
             }).ToList();
         }
     }

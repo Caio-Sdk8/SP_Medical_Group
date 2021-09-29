@@ -15,132 +15,121 @@ namespace SpMedicalGroup.WebApi.Repositories
 
         public void adicionarDescricao(int idconsulta, string consultaDesc)
         {
-            consultum consultaSemDesc = BuscarPorId(idconsulta);
+            Consultum consultaSemDesc = BuscarPorId(idconsulta);
 
-            consultaSemDesc.descricaoConsulta = consultaDesc;
+            consultaSemDesc.DescricaoConsulta = consultaDesc;
 
-            ctx.consulta.Update(consultaSemDesc);
+            ctx.Consulta.Update(consultaSemDesc);
 
             ctx.SaveChanges();
         }
 
         public void alterarSituacao(int idConsulta, short novaSituacao)
         {
-            consultum consulta = BuscarPorId(idConsulta);
+            Consultum consulta = BuscarPorId(idConsulta);
 
-            consulta.idSituacao = novaSituacao;
+            consulta.IdSituacao = novaSituacao;
 
-            ctx.consulta.Update(consulta);
-
-            ctx.SaveChanges();
-        }
-
-        public void cancelar(int idConsulta)
-        {
-            consultum consulta = BuscarPorId(idConsulta);
-
-            consulta.idSituacao = 3;
-
-            ctx.consulta.Update(consulta);
+            ctx.Consulta.Update(consulta);
 
             ctx.SaveChanges();
         }
 
-        public void Atualizar(int idConsulta, consultum consultaAtualizada)
+        public void Atualizar(int idConsulta, Consultum consultaAtualizada)
         {
-            consultum consultaBusc = BuscarPorId(idConsulta);
+            Consultum consultaBusc = BuscarPorId(idConsulta);
 
-            consultaBusc.idMedico = consultaAtualizada.idMedico;
-            consultaBusc.idPaciente = consultaAtualizada.idPaciente;
-            consultaBusc.idSituacao = consultaAtualizada.idSituacao;
-            if (consultaAtualizada.descricaoConsulta != null) {
-                consultaBusc.descricaoConsulta = consultaAtualizada.descricaoConsulta;
+            consultaBusc.IdMedico = consultaAtualizada.IdMedico;
+            consultaBusc.IdPaciente = consultaAtualizada.IdPaciente;
+            consultaBusc.IdSituacao = consultaAtualizada.IdSituacao;
+            if (consultaAtualizada.DescricaoConsulta != null) {
+                consultaBusc.DescricaoConsulta = consultaAtualizada.DescricaoConsulta;
             }
-            consultaBusc.dataConsulta = consultaAtualizada.dataConsulta;
-            consultaBusc.horarioConsulta = consultaAtualizada.horarioConsulta;
+            consultaBusc.DataConsulta = consultaAtualizada.DataConsulta;
+            consultaBusc.HorarioConsulta = consultaAtualizada.HorarioConsulta;
 
-            ctx.consulta.Update(consultaBusc);
+            ctx.Consulta.Update(consultaBusc);
 
             ctx.SaveChanges();
         }
 
-        public consultum BuscarPorId(int idConsulta)
+        public Consultum BuscarPorId(int idConsulta)
         {
-            return ctx.consulta.FirstOrDefault(ab => ab.idConsulta == idConsulta);
+            return ctx.Consulta.FirstOrDefault(ab => ab.IdConsulta == idConsulta);
         }
 
-        public void Cadastrar(consultum novaConsulta)
+        public void Cadastrar(Consultum novaConsulta)
         {
-            ctx.consulta.Add(novaConsulta);
+            ctx.Consulta.Add(novaConsulta);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idConsulta)
         {
-            consultum consultaBuscada = BuscarPorId(idConsulta);
+            Consultum consultaBuscada = BuscarPorId(idConsulta);
 
-            ctx.consulta.Add(consultaBuscada);
+            ctx.Consulta.Remove(consultaBuscada);
 
             ctx.SaveChanges();
         }
 
-        public List<consultum> Listar()
+        public List<Consultum> Listar()
         {
-            return ctx.consulta.Select(x => new consultum
+            return ctx.Consulta.Select(x => new Consultum
             {
-                idConsulta = x.idConsulta,
-                idSituacaoNavigation = new situacao
+                IdConsulta = x.IdConsulta,
+                IdSituacaoNavigation = new Situacao
                 {
-                    descricaoSituacao = x.idSituacaoNavigation.descricaoSituacao
+                    DescricaoSituacao = x.IdSituacaoNavigation.DescricaoSituacao
                 },
-                descricaoConsulta = x.descricaoConsulta,
-                dataConsulta = x.dataConsulta,
-                horarioConsulta = x.horarioConsulta,
-                idMedicoNavigation = new medico
+                DescricaoConsulta = x.DescricaoConsulta,
+                DataConsulta = x.DataConsulta,
+                HorarioConsulta = x.HorarioConsulta,
+                IdMedicoNavigation = new Medico
                 {
-                    idUsuarioNavigation = new usuario
+                    IdUsuarioNavigation = new Usuario
                     {
-                        nomeUsuario = x.idMedicoNavigation.idUsuarioNavigation.nomeUsuario
+                        NomeUsuario = x.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario
                     }
                 },
-                idPacienteNavigation = new paciente
+                IdPacienteNavigation = new Paciente
                 {
-                    idUsuarioNavigation = new usuario
+                    IdUsuarioNavigation = new Usuario
                     {
-                        nomeUsuario = x.idMedicoNavigation.idUsuarioNavigation.nomeUsuario
+                        NomeUsuario = x.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario
                     }
                 },
             }).ToList();
         }
 
-        public List<consultum> listarMinhasPac(int idUsuario)
+        public List<Consultum> listarMinhas(int idUsuario)
         {
-            return ctx.consulta.Select(x => new consultum
+            return ctx.Consulta.Select(x => new Consultum
             {
-                idConsulta = x.idConsulta,
-                idSituacaoNavigation = new situacao
+                IdConsulta = x.IdConsulta,
+                IdSituacaoNavigation = new Situacao
                 {
-                    descricaoSituacao = x.idSituacaoNavigation.descricaoSituacao
+                    DescricaoSituacao = x.IdSituacaoNavigation.DescricaoSituacao
                 },
-                descricaoConsulta = x.descricaoConsulta,
-                dataConsulta = x.dataConsulta,
-                horarioConsulta = x.horarioConsulta,
-                idMedicoNavigation = new medico
+                DescricaoConsulta = x.DescricaoConsulta,
+                DataConsulta = x.DataConsulta,
+                HorarioConsulta = x.HorarioConsulta,
+                IdMedicoNavigation = new Medico
                 {
-                    idUsuarioNavigation = new usuario
+                    IdUsuarioNavigation = new Usuario
                     {
-                        nomeUsuario = x.idMedicoNavigation.idUsuarioNavigation.nomeUsuario
+                        NomeUsuario = x.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario
                     }
                 },
-                idPacienteNavigation = new paciente
+                IdPacienteNavigation = new Paciente
                 {
-                    idUsuarioNavigation = new usuario
+                    IdUsuarioNavigation = new Usuario
                     {
-                        nomeUsuario = x.idMedicoNavigation.idUsuarioNavigation.nomeUsuario
+                        NomeUsuario = x.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario
                     }
                 },
-            }).Where(x => x.idPacienteNavigation.idUsuario == idUsuario || x.idMedicoNavigation.idUsuario == idUsuario).ToList();
+            }).Where(x => x.IdPacienteNavigation.IdUsuario == idUsuario || x.IdMedicoNavigation.IdUsuario == idUsuario).ToList();
         }
     }
 }

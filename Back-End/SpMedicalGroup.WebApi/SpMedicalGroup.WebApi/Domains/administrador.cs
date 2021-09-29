@@ -5,19 +5,19 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class administrador
+    public partial class Administrador
     {
-        public administrador()
+        public Administrador()
         {
-            clinicas = new HashSet<clinica>();
+            Clinicas = new HashSet<Clinica>();
         }
 
-        public short idAdministrador { get; set; }
-        public short idUsuario { get; set; }
-        public string rgAdministrador { get; set; }
-        public string cpfAdministrador { get; set; }
+        public short IdAdministrador { get; set; }
+        public short IdUsuario { get; set; }
+        public string RgAdministrador { get; set; }
+        public string CpfAdministrador { get; set; }
 
-        public virtual usuario idUsuarioNavigation { get; set; }
-        public virtual ICollection<clinica> clinicas { get; set; }
+        public virtual Usuario IdUsuarioNavigation { get; set; }
+        public virtual ICollection<Clinica> Clinicas { get; set; }
     }
 }

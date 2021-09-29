@@ -65,7 +65,6 @@ C:\Users\fic\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGr
 C:\Users\fic\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\ref\SpMedicalGroup.WebApi.dll
 C:\Users\fic\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.pdb
 C:\Users\fic\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.genruntimeconfig.cache
-C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.csproj.AssemblyReference.cache
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.AssemblyInfoInputs.cache
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.AssemblyInfo.cs
@@ -134,3 +133,4 @@ C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpM
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.csproj.CopyComplete
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.xml
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.genruntimeconfig.cache
+C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.csproj.AssemblyReference.cache

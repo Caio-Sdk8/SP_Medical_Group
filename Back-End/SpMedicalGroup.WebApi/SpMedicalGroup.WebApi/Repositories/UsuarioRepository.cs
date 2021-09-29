@@ -11,52 +11,58 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class UsuarioRepository : IUsuarioRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idUsuario, usuario UsuarioAtualizado)
+
+        public Usuario Login(string email, string senha)
         {
-            usuario usuarioBusc = BuscarPorId(idUsuario);
+            return ctx.Usuarios.FirstOrDefault(u => u.EmailUsuario == email && u.SenhaUsuario == senha);
+        }
 
-            if(UsuarioAtualizado.nomeUsuario != null)
+        public void Atualizar(int idUsuario, Usuario UsuarioAtualizado)
+        {
+            Usuario usuarioBusc = BuscarPorId(idUsuario);
+
+            if(UsuarioAtualizado.NomeUsuario != null)
             {
-                usuarioBusc.nomeUsuario = UsuarioAtualizado.nomeUsuario;
+                usuarioBusc.NomeUsuario = UsuarioAtualizado.NomeUsuario;
             }
-            if(UsuarioAtualizado.senhaUsuario != null)
+            if(UsuarioAtualizado.SenhaUsuario != null)
             {
-                usuarioBusc.senhaUsuario = UsuarioAtualizado.senhaUsuario;
+                usuarioBusc.SenhaUsuario = UsuarioAtualizado.SenhaUsuario;
             }
-            if(UsuarioAtualizado.emailUsuario != null)
+            if(UsuarioAtualizado.EmailUsuario != null)
             {
-                usuarioBusc.emailUsuario = UsuarioAtualizado.emailUsuario;
+                usuarioBusc.EmailUsuario = UsuarioAtualizado.EmailUsuario;
             }
 
-            ctx.usuarios.Update(usuarioBusc);
+            ctx.Usuarios.Update(usuarioBusc);
 
             ctx.SaveChanges();
         }
 
-        public usuario BuscarPorId(int idUsuario)
+        public Usuario BuscarPorId(int idUsuario)
         {
-            return ctx.usuarios.FirstOrDefault(ab => ab.idUsuario == idUsuario);
+            return ctx.Usuarios.FirstOrDefault(ab => ab.IdUsuario == idUsuario);
         }
 
-        public void Cadastrar(usuario novoUsuario)
+        public void Cadastrar(Usuario novoUsuario)
         {
-            ctx.usuarios.Add(novoUsuario);
+            ctx.Usuarios.Add(novoUsuario);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idUsuario)
         {
-            usuario userBuscado = BuscarPorId(idUsuario);
+            Usuario userBuscado = BuscarPorId(idUsuario);
 
-            ctx.usuarios.Add(userBuscado);
+            ctx.Usuarios.Remove(userBuscado);
 
             ctx.SaveChanges();
         }
 
-        public List<usuario> Listar()
+        public List<Usuario> Listar()
         {
-            return ctx.usuarios.ToList();
+            return ctx.Usuarios.ToList();
         }
     }
 }

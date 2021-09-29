@@ -8,13 +8,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface ITelefoneRepository
     {
-        List<telefone> Listar();
+        List<Telefone> Listar();
 
-        telefone BuscarPorId(int idTelefone);
+        Telefone BuscarPorId(int idTelefone);
 
-        void Cadastrar(telefone novoTelefone);
+        void Cadastrar(Telefone novoTelefone);
 
-        void Atualizar(int idTelefone, telefone TelefoneAtualizado);
+        void Atualizar(int idTelefone, Telefone TelefoneAtualizado);
 
         void Deletar(int idTelefone);
     }

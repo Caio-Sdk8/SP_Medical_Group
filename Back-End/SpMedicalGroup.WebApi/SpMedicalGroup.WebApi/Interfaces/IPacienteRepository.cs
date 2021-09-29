@@ -1,4 +1,5 @@
 ﻿using SpMedicalGroup.WebApi.Domains;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface IPacienteRepository
     {
-        List<paciente> Listar();
+        List<Paciente> Listar();
 
-        paciente BuscarPorId(int idPaciente);
+        Paciente BuscarPorId(int idPaciente);
 
-        void Cadastrar(paciente novoPaciente);
+        void Cadastrar(PacienteViewModel pac);
 
-        void Atualizar(int idPaciente, paciente PacienteAtualizado);
+        void Atualizar(int idPaciente, Paciente PacienteAtualizado);
 
         void Deletar(int idPaciente);
     }

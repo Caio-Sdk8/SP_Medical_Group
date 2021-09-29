@@ -5,16 +5,16 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class situacao
+    public partial class Situacao
     {
-        public situacao()
+        public Situacao()
         {
-            consulta = new HashSet<consultum>();
+            Consulta = new HashSet<Consultum>();
         }
 
-        public short idSituacao { get; set; }
-        public string descricaoSituacao { get; set; }
+        public short IdSituacao { get; set; }
+        public string DescricaoSituacao { get; set; }
 
-        public virtual ICollection<consultum> consulta { get; set; }
+        public virtual ICollection<Consultum> Consulta { get; set; }
     }
 }

@@ -83,3 +83,8 @@ horarioConsulta time NOT NULL,
 descricaoConsulta varchar(800) DEFAULT'Sem descrição'
 );
 GO
+
+CREATE TABLE tipoUsuario(
+idTipoUsuario smallint primary key identity,
+nomeTipoUsuario  varchar(20) NOT NULL UNIQUE
+);

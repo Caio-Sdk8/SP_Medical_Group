@@ -114,3 +114,10 @@ GO
 
 SELECT * FROM consulta;
 GO
+
+INSERT INTO tipoUsuario
+VALUES ('Administrador'), ('Paciente'), ('Médico');
+GO
+
+SELECT * FROM tipoUsuario;
+GO

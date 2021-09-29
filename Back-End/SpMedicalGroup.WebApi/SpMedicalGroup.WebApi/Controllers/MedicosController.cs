@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
 using SpMedicalGroup.WebApi.Repositories;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,34 +24,39 @@ namespace SpMedicalGroup.WebApi.Controllers
             _MedicoRepository = new MedicoRepository();
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(_MedicoRepository.Listar());
         }
 
+        [Authorize(Roles = "1")]
         [HttpGet("{idMedico}")]
         public IActionResult BuscarPorId(int idMedico)
         {
             return Ok(_MedicoRepository.BuscarPorId(idMedico));
         }
 
+        [Authorize(Roles = "1")]
         [HttpPost]
-        public IActionResult Cadastrar(medico novaMedico)
+        public IActionResult Cadastrar(MedicoViewModel med)
         {
-            _MedicoRepository.Cadastrar(novaMedico);
+            _MedicoRepository.Cadastrar(med);
 
             return StatusCode(201);
         }
 
+        [Authorize(Roles = "1")]
         [HttpPut("{idMedico}")]
-        public IActionResult Atualizar(int idMedico, medico MedicoAtualizada)
+        public IActionResult Atualizar(int idMedico, Medico MedicoAtualizada)
         {
             _MedicoRepository.Atualizar(idMedico, MedicoAtualizada);
 
             return StatusCode(204);
         }
 
+        [Authorize(Roles = "1")]
         [HttpDelete("{idMedico}")]
         public IActionResult Deletar(int idMedico)
         {

@@ -8,13 +8,13 @@ namespace SpMedicalGroup.WebApi.Interfaces
 {
     interface IClinicaRepository
     {
-        List<clinica> Listar();
+        List<Clinica> Listar();
 
-        clinica BuscarPorId(int idClinica);
+        Clinica BuscarPorId(int idClinica);
 
-        void Cadastrar(clinica novaClinica);
+        void Cadastrar(Clinica novaClinica);
 
-        void Atualizar(int idClinica, clinica ClinicaAtualizada);
+        void Atualizar(int idClinica, Clinica ClinicaAtualizada);
 
         void Deletar(int idClinica);
     }

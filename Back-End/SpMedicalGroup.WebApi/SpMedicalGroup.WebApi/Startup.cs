@@ -22,6 +22,26 @@ namespace SpMedicalGroup.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = "JwtBearer";
+                    options.DefaultChallengeScheme = "JwtBearer";
+                })
+                .AddJwtBearer("JwtBearer", options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spMed-senha-backend")),
+                        ClockSkew = TimeSpan.FromHours(3),
+                        ValidIssuer = "SpMedicalGroup.webAPI",
+                        ValidAudience = "SpMedicalGroup.webAPI"
+                    };
+                });
+
+            services
                 .AddControllers()
                 .AddNewtonsoftJson(options =>
                 {

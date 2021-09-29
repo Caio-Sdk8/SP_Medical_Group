@@ -11,44 +11,44 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class EspecialidadeRepository : IEspecialidadeRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idEspecialidade, especialidade EspecialidadeAtualizada)
+        public void Atualizar(int IdEspecialIdade, Especialidade EspecialIdadeAtualizada)
         {
-            especialidade especialidadeBusc = BuscarPorId(idEspecialidade);
+            Especialidade EspecialIdadeBusc = BuscarPorId(IdEspecialIdade);
 
-            if (EspecialidadeAtualizada.nomeEspecialidade != null)
+            if (EspecialIdadeAtualizada.NomeEspecialidade != null)
             {
-                especialidadeBusc.nomeEspecialidade = EspecialidadeAtualizada.nomeEspecialidade;
+                EspecialIdadeBusc.NomeEspecialidade = EspecialIdadeAtualizada.NomeEspecialidade;
             }
 
-            ctx.especialidades.Update(especialidadeBusc);
+            ctx.Especialidades.Update(EspecialIdadeBusc);
 
             ctx.SaveChanges();
         }
 
-        public especialidade BuscarPorId(int idEspecialidade)
+        public Especialidade BuscarPorId(int IdEspecialIdade)
         {
-            return ctx.especialidades.FirstOrDefault(ab => ab.idEspecialidade == idEspecialidade);
+            return ctx.Especialidades.FirstOrDefault(ab => ab.IdEspecialidade == IdEspecialIdade);
         }
 
-        public void Cadastrar(especialidade novaEspecialidade)
+        public void Cadastrar(Especialidade novaEspecialIdade)
         {
-            ctx.especialidades.Add(novaEspecialidade);
+            ctx.Especialidades.Add(novaEspecialIdade);
 
             ctx.SaveChanges();
         }
 
-        public void Deletar(int idEspecialidade)
+        public void Deletar(int IdEspecialIdade)
         {
-            especialidade especialidadeBusc = BuscarPorId(idEspecialidade);
+            Especialidade EspecialIdadeBusc = BuscarPorId(IdEspecialIdade);
 
-            ctx.especialidades.Add(especialidadeBusc);
+            ctx.Especialidades.Remove(EspecialIdadeBusc);
 
             ctx.SaveChanges();
         }
 
-        public List<especialidade> Listar()
+        public List<Especialidade> Listar()
         {
-            return ctx.especialidades.ToList();
+            return ctx.Especialidades.ToList();
         }
     }
 }

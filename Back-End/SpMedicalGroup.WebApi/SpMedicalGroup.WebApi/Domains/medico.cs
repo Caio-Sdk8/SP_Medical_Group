@@ -5,22 +5,22 @@ using System.Collections.Generic;
 
 namespace SpMedicalGroup.WebApi.Domains
 {
-    public partial class medico
+    public partial class Medico
     {
-        public medico()
+        public Medico()
         {
-            consulta = new HashSet<consultum>();
+            Consulta = new HashSet<Consultum>();
         }
 
-        public short idMedico { get; set; }
-        public short idUsuario { get; set; }
-        public short idClinica { get; set; }
-        public short idEspecialidade { get; set; }
-        public string crm { get; set; }
+        public short IdMedico { get; set; }
+        public short IdUsuario { get; set; }
+        public short IdClinica { get; set; }
+        public short IdEspecialidade { get; set; }
+        public string Crm { get; set; }
 
-        public virtual clinica idClinicaNavigation { get; set; }
-        public virtual especialidade idEspecialidadeNavigation { get; set; }
-        public virtual usuario idUsuarioNavigation { get; set; }
-        public virtual ICollection<consultum> consulta { get; set; }
+        public virtual Clinica IdClinicaNavigation { get; set; }
+        public virtual Especialidade IdEspecialidadeNavigation { get; set; }
+        public virtual Usuario IdUsuarioNavigation { get; set; }
+        public virtual ICollection<Consultum> Consulta { get; set; }
     }
 }

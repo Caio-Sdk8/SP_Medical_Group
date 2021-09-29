@@ -11,44 +11,44 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class SituacaoRepository : ISituacaoRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idSituacao, situacao SituacaoAtualizada)
+        public void Atualizar(int idSituacao, Situacao SituacaoAtualizada)
         {
-            situacao situacaoBusc = BuscarPorId(idSituacao);
+            Situacao SituacaoBusc = BuscarPorId(idSituacao);
 
-            if(SituacaoAtualizada.descricaoSituacao != null)
+            if(SituacaoAtualizada.DescricaoSituacao != null)
             {
-                situacaoBusc.descricaoSituacao = SituacaoAtualizada.descricaoSituacao;
+                SituacaoBusc.DescricaoSituacao = SituacaoAtualizada.DescricaoSituacao;
             }
 
-            ctx.situacaos.Update(situacaoBusc);
+            ctx.Situacaos.Update(SituacaoBusc);
 
             ctx.SaveChanges();
         }
 
-        public situacao BuscarPorId(int idSituacao)
+        public Situacao BuscarPorId(int idSituacao)
         {
-            return ctx.situacaos.FirstOrDefault(ab => ab.idSituacao == idSituacao);
+            return ctx.Situacaos.FirstOrDefault(ab => ab.IdSituacao == idSituacao);
         }
 
-        public void Cadastrar(situacao novaSituacao)
+        public void Cadastrar(Situacao novaSituacao)
         {
-            ctx.situacaos.Add(novaSituacao);
+            ctx.Situacaos.Add(novaSituacao);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idSituacao)
         {
-            situacao situcaoBusc = BuscarPorId(idSituacao);
+            Situacao situcaoBusc = BuscarPorId(idSituacao);
 
-            ctx.situacaos.Add(situcaoBusc);
+            ctx.Situacaos.Remove(situcaoBusc);
 
             ctx.SaveChanges();
         }
 
-        public List<situacao> Listar()
+        public List<Situacao> Listar()
         {
-            return ctx.situacaos.ToList();
+            return ctx.Situacaos.ToList();
         }
     }
 }

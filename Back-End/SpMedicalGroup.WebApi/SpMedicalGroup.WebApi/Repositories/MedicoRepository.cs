@@ -11,57 +11,67 @@ namespace SpMedicalGroup.WebApi.Repositories
     public class MedicoRepository : IMedicoRepository
     {
         SpMedicalGpContext ctx = new SpMedicalGpContext();
-        public void Atualizar(int idMedico, medico MedicoAtualizado)
+        UsuarioRepository usuarioPrafzr = new UsuarioRepository();
+
+        public void Atualizar(int idMedico, Medico MedicoAtualizado)
         {
-            medico medicoBusc = BuscarPorId(idMedico);
+            Medico MedicoBusc = BuscarPorId(idMedico);
 
-            medicoBusc.idClinica = MedicoAtualizado.idClinica;
+            MedicoBusc.IdClinica = MedicoAtualizado.IdClinica;
 
-            ctx.medicos.Update(medicoBusc);
+            ctx.Medicos.Update(MedicoBusc);
 
             ctx.SaveChanges();
         }
 
-        public medico BuscarPorId(int idMedico)
+        public Medico BuscarPorId(int idMedico)
         {
-            return ctx.medicos.FirstOrDefault(ab => ab.idMedico == idMedico);
+            return ctx.Medicos.FirstOrDefault(ab => ab.IdMedico == idMedico);
         }
 
-        public void Cadastrar(medico novoMedico)
+        public void Cadastrar(Medico novoMedico, Usuario novoUsuario)
         {
-            ctx.medicos.Add(novoMedico);
+            usuarioPrafzr.Cadastrar(novoUsuario);
+
+            novoMedico.IdUsuario = novoUsuario.IdUsuario;
+
+            ctx.Medicos.Add(novoMedico);
 
             ctx.SaveChanges();
         }
 
         public void Deletar(int idMedico)
         {
-            medico medicoBuscado = BuscarPorId(idMedico);
+            Medico MedicoBuscado = BuscarPorId(idMedico);
 
-            ctx.medicos.Add(medicoBuscado);
+            int idUsuario = MedicoBuscado.IdUsuario;
+
+            ctx.Medicos.Remove(MedicoBuscado);
 
             ctx.SaveChanges();
+
+            usuarioPrafzr.Deletar(idUsuario);
         }
 
-        public List<medico> Listar()
+        public List<Medico> Listar()
         {
-            return ctx.medicos.Select(x => new medico
+            return ctx.Medicos.Select(x => new Medico
             {
-                idMedico = x.idMedico,
-                idClinicaNavigation = new clinica
+                IdMedico = x.IdMedico,
+                IdClinicaNavigation = new Clinica
                 {
-                    nomeClinica = x.idClinicaNavigation.nomeClinica
+                    NomeClinica = x.IdClinicaNavigation.NomeClinica
                 },
-                idUsuarioNavigation = new usuario
+                IdUsuarioNavigation = new Usuario
                 {
-                    nomeUsuario = x.idUsuarioNavigation.nomeUsuario,
-                    emailUsuario = x.idUsuarioNavigation.emailUsuario,
+                    NomeUsuario = x.IdUsuarioNavigation.NomeUsuario,
+                    EmailUsuario = x.IdUsuarioNavigation.EmailUsuario,
                 },
-                idEspecialidadeNavigation = new especialidade
+                IdEspecialidadeNavigation = new Especialidade
                 {
-                    nomeEspecialidade = x.idEspecialidadeNavigation.nomeEspecialidade
+                    NomeEspecialidade = x.IdEspecialidadeNavigation.NomeEspecialidade
                 },
-                crm = x.crm,
+                Crm = x.Crm,
             }).ToList();
         }
     }
