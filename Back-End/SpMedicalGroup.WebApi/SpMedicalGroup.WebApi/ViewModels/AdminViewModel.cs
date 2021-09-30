@@ -8,7 +8,6 @@ namespace SpMedicalGroup.WebApi.ViewModels
 {
     public class AdminViewModel
     {
-        [Required]
         public short IdAdministrador { get; set; }
 
         public short IdUsuario { get; set; }

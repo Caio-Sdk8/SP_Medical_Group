@@ -1,6 +1,7 @@
 ﻿using SpMedicalGroup.WebApi.Contexts;
 using SpMedicalGroup.WebApi.Domains;
 using SpMedicalGroup.WebApi.Interfaces;
+using SpMedicalGroup.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,13 +41,24 @@ namespace SpMedicalGroup.WebApi.Repositories
             return ctx.Pacientes.FirstOrDefault(ab => ab.IdPaciente == idPaciente);
         }
 
-        public void Cadastrar(Paciente novoPaciente, Usuario novoUsuario)
+        public void Cadastrar(PacienteViewModel pac)
         {
-            usuarioPrafzr.Cadastrar(novoUsuario);
+            Paciente novoPac = new Paciente();
+            Usuario u = new Usuario();
 
-            novoPaciente.IdUsuario = novoUsuario.IdUsuario;
+            u.EmailUsuario = pac.EmailUsuario;
+            u.IdTipoUsuario = pac.IdTipoUsuario;
+            u.SenhaUsuario = pac.SenhaUsuario;
+            u.NomeUsuario = pac.NomeUsuario;
 
-            ctx.Pacientes.Add(novoPaciente);
+            usuarioPrafzr.Cadastrar(u);
+
+            novoPac.IdUsuario = u.IdUsuario;
+            novoPac.CpfPaciente = pac.CpfPaciente;
+            novoPac.RgPaciente = pac.RgPaciente;
+            novoPac.DataNascimento = pac.DataNascimento;
+
+            ctx.Pacientes.Add(novoPac);
 
             ctx.SaveChanges();
         }
