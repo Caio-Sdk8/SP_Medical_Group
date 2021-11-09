@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.quaseMain {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardPac {
+    width: 996px;
+    height: 367px;
+    border-radius: 10px;
+    border: 3px solid rgba(150, 242, 236, 1);
+    padding: 10px;
+}
+
+body {
+    background-color: #F9FFF8;
+}
