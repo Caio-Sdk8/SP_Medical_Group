@@ -134,3 +134,7 @@ C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpM
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.xml
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.genruntimeconfig.cache
 C:\Users\fic\Desktop\Caio2DM\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.csproj.AssemblyReference.cache
+C:\Users\53976212857\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.dll
+C:\Users\53976212857\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\ref\SpMedicalGroup.WebApi.dll
+C:\Users\53976212857\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.xml
+C:\Users\53976212857\Desktop\SP_Medical_Group\Back-End\SpMedicalGroup.WebApi\SpMedicalGroup.WebApi\obj\Debug\net5.0\SpMedicalGroup.WebApi.pdb
