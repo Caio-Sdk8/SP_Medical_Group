@@ -85,7 +85,7 @@ namespace SpMedicalGroup.WebApi.Repositories
                 },
                 DescricaoConsulta = x.DescricaoConsulta,
                 DataConsulta = x.DataConsulta,
-                HorarioConsulta = x.HorarioConsulta,
+                HorarioConsulta = x.;,
                 IdMedicoNavigation = new Medico
                 {
                     IdUsuarioNavigation = new Usuario
@@ -97,7 +97,7 @@ namespace SpMedicalGroup.WebApi.Repositories
                 {
                     IdUsuarioNavigation = new Usuario
                     {
-                        NomeUsuario = x.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario
+                        NomeUsuario = x.IdPacienteNavigation.IdUsuarioNavigation.NomeUsuario
                     }
                 },
             }).ToList();

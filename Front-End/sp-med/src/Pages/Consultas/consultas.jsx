@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { directive } from "@babel/types";
 
-export default function consulta() {
+export default function Consulta() {
 
     const [ListaConsultas, atualizaConsultas] = useState([]),
     const [IdMedico, atualizaIdMed] = useState(new int),
@@ -27,41 +27,47 @@ export default function consulta() {
     return (
         <section className="main">
             <section className="quaseMain">
-                <div className="cardPac">
-                    <div className="containerEsq">
-                        <div>
-                            <span className="TTcampo">Médico</span>
-                            <p>Nome do médico</p>
-                        </div>
-                        <div>
-                            <span className="TTcampo">Situação</span>
-                            <p>Situação</p>
-                        </div>
-                        <div>
-                            <span class="TTcampo">Descrição</span>
-                            <p>Isso é um texto somente para testar a descrição e eu não quero por lorem ipsum entendeu?
-                                sou
-                                um dev de qualidade me contrata</p>
-                        </div>
-                    </div>
-                    <div className="containerDir">
-                        <div>
-                            <span className="TTcampo">Paciente</span>
-                            <p>Nome Paciente</p>
-                        </div>
-                        <div>
-                            <span className="TTcampo">Data Consulta</span>
-                            <p>00/00/0000</p>
-                        </div>
-                        <div>
-                            <span className="TTcampo">Horário Consulta</span>
-                            <p>00:00</p>
-                        </div>
-                    </div>
-                    <div className="alinhar">
-                        <img className="dodoi" src="undraw_injured_9757 1.png" alt=""/>
-                    </div>
-                </div>
+                {
+                    ListaConsultas.map((consultas) => {
+                        return (
+                            <div className="cardPac">
+                                <div className="containerEsq">
+                                    <div>
+                                        <span className="TTcampo">Médico</span>
+                                        <p>{consultas.data.IdMedicoNavigation.IdUsuarioNavigation.NomeUsuario}</p>
+                                    </div>
+                                    <div>
+                                        <span className="TTcampo">Situação</span>
+                                        <p>{consultas.data.IdSituacaoNavigation.DescricaoSituacao}</p>
+                                    </div>
+                                    <div>
+                                        <span class="TTcampo">Descrição</span>
+                                        <p>{consultas.data.DescricaoConsulta}</p>
+                                    </div>
+                                </div>
+                                <div className="containerDir">
+                                    <div>
+                                        <span className="TTcampo">Paciente</span>
+                                        <p>{consultas.data.IdPacienteNavigation.IdUsuarioNavigation.NomeUsuario}</p>
+                                    </div>
+                                    <div>
+                                        <span className="TTcampo">Data Consulta</span>
+                                        <p>{consultas.data.DataConsulta}</p>
+                                    </div>
+                                    <div>
+                                        <span className="TTcampo">Horário Consulta</span>
+                                        <p>{consultas.data.HorarioConsulta}</p>
+                                    </div>
+                                </div>
+                                <div className="alinhar">
+                                    <img className="dodoi" src="undraw_injured_9757 1.png" alt="" />
+                                </div>
+                            </div>
+                        )
+
+                    })
+                }
+
                 <div className="cardPac">
                     <div className="containerEsq">
                         <div>
