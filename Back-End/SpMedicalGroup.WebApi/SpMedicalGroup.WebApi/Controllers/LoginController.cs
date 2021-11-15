@@ -43,7 +43,8 @@ namespace SpMedicalGroup.WebApi.Controllers
                     new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.EmailUsuario),
                     new Claim(JwtRegisteredClaimNames.Name, usuarioBuscado.NomeUsuario),
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString())
+                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString()),
+                    new Claim("role", usuarioBuscado.IdTipoUsuario.ToString())
                 };
 
                     var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("spMed-senha-backend"));

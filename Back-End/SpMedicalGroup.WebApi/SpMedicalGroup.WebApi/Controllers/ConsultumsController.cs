@@ -23,14 +23,14 @@ namespace SpMedicalGroup.WebApi.Controllers
             _ConsultumRepository = new ConsultumRepository();
         }
 
-        [Authorize(Roles = "3,2")]
+
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(_ConsultumRepository.Listar());
         }
 
-        [Authorize(Roles = "3,2")]
+
         [HttpGet("{idConsultum}")]
         public IActionResult BuscarPorId(int idConsultum)
         {

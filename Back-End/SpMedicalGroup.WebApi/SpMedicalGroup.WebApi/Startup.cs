@@ -49,6 +49,21 @@ namespace SpMedicalGroup.WebApi
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 });
 
+            services.AddCors(options => {
+            options.AddPolicy("corsPolicy",
+
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+
+                }
+
+                    
+                    );
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpMedicalGroup.webAPI", Version = "v1" });
@@ -77,6 +92,8 @@ namespace SpMedicalGroup.WebApi
             });
 
             app.UseRouting();
+
+            app.UseCors("corsPolicy");
 
             app.UseAuthentication();
 
