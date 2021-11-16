@@ -3,9 +3,6 @@ import axios from 'axios';
 import { parseJwt} from '../../services/auth';
 import { Link } from 'react-router-dom';
 
-import '../../assets/css/login.css';
-
-import logo from '../../assets/img/logo.png';
 
 export default class Login extends Component {
     constructor(props) {
@@ -32,14 +29,7 @@ export default class Login extends Component {
                 if (resposta.status === 200) {
                     localStorage.setItem('usuario-login', resposta.data.token);
                     this.setState({ isLoading: false });
-
-                    if (parseJwt().role === '1' ) {
-                        this.props.history.push('/tiposeventos');
-                    }
-
-                    else{
-                        this.props.history.push('/meusEventos');
-                    }
+                    this.props.history.push('/Consultas');
                 }
             })
             .catch(() => {
@@ -62,7 +52,6 @@ export default class Login extends Component {
                         <div className="item__login">
                             <div className="row">
                                 <div className="item">
-                                <Link to="/"><img src={logo} className="icone__login" alt="logo da Gufi" /> </Link>
                                 </div>
                                 <div className="item" id="item__title">
                                     <p className="text__login" id="item__description">

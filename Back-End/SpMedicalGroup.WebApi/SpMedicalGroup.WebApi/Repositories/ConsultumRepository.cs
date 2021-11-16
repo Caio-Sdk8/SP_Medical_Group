@@ -85,7 +85,7 @@ namespace SpMedicalGroup.WebApi.Repositories
                 },
                 DescricaoConsulta = x.DescricaoConsulta,
                 DataConsulta = x.DataConsulta,
-                HorarioConsulta = x.;,
+                HorarioConsulta = x.HorarioConsulta,
                 IdMedicoNavigation = new Medico
                 {
                     IdUsuarioNavigation = new Usuario

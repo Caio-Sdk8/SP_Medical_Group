@@ -3,16 +3,20 @@ import axios from "axios";
 import { parseJwt } from '../../services/auth';
 import { directive } from "@babel/types";
 import { render } from "react-dom";
+import './consultas.css';
+import dodoi from '../Assets/undraw_injured_9757 1.png';
+import lapis from '../Assets/image 7.png';
+import criar from '../Assets/image 6.png'
 
 export default function Consulta() {
 
-    const [ListaConsultas, atualizaConsultas] = useState([]),
-    const [IdMedico, atualizaIdMed] = useState(new int),
-    const [IdSitucao, atualizaSituacao] = useState(new int),
-    const [IdPaciente, atualizaPaciente] = useState(new int),
-    const [DescricaoConsulta, atualizaDesc] = useState(''),
-    const [DataConsulta, atualizaData] = useState(new Date),
-    const [hora, atualizaHora] = useState(''),
+    const [ListaConsultas, atualizaConsultas] = useState([])
+    const [IdMedico, atualizaIdMed] = useState(0)
+    const [IdSitucao, atualizaSituacao] = useState(0)
+    const [IdPaciente, atualizaPaciente] = useState(0)
+    const [DescricaoConsulta, atualizaDesc] = useState('')
+    const [DataConsulta, atualizaData] = useState(new Date())
+    const [HorarioConsulta, atualizaHora] = useState('')
 
 
     function listarConsultas() {
@@ -27,6 +31,8 @@ export default function Consulta() {
         })
             .catch(erro => console.log(erro));
     }
+
+    useEffect(listarConsultas, [])
 
     function listarMinhas() {
         axios('http://localhost:5000/api/Consultums', {
@@ -73,7 +79,7 @@ export default function Consulta() {
                     </div>
                     <div>
                         <label for="horaCon" className="TTcampo">Horário Consulta</label>
-                        <input value={hora} id="horaCon" type="time" />
+                        <input value={HorarioConsulta} id="horaCon" type="time" />
                     </div>
 
                 </div>
@@ -92,54 +98,55 @@ export default function Consulta() {
             <section className="main">
                 <section className="quaseMain">
                     {
-
+                        
+                        
                         ListaConsultas.map((consultas) => {
+                            console.log(consultas)
                             return (
                                 <div className="cardPac">
                                     <div className="containerEsq">
                                         <div>
                                             <span className="TTcampo">Médico</span>
-                                            <p>Nome do médico</p>
+                                            <p>{consultas.idMedicoNavigation.idUsuarioNavigation.nomeUsuario}</p>
                                         </div>
                                         <div>
                                             <span className="TTcampo">Situação</span>
-                                            <p>Situação</p>
+                                            <p>{consultas.idSituacaoNavigation.descricaoSituacao}</p>
                                         </div>
                                         <div>
                                             <span className="TTcampo">Descrição</span>
-                                            <p>Isso é um texto somente para testar a descrição e eu não quero por lorem ipsum entendeu?
-                                                sou
-                                                um dev de qualidade me contrata</p>
+                                            <p>{consultas.descricaoConsulta}</p>
                                         </div>
                                     </div>
                                     <div class="containerDir">
                                         <div>
                                             <span className="TTcampo">Paciente</span>
-                                            <p>Nome Paciente</p>
+                                            <p>{consultas.idPacienteNavigation.idUsuarioNavigation.nomeUsuario}</p>
                                         </div>
                                         <div>
                                             <span className="TTcampo">Data Consulta</span>
-                                            <p>00/00/0000</p>
+                                            <p>{consultas.dataConsulta}</p>
                                         </div>
                                         <div>
                                             <span className="TTcampo">Horário Consulta</span>
-                                            <p>00:00</p>
+                                            <p>{consultas.horarioConsulta}</p>
                                         </div>
 
                                     </div>
                                     <div className="alinhar">
-                                        <img className="dodoi" src="undraw_injured_9757 1.png" alt="" />
+                                        <img className="dodoi" src={dodoi} alt="" />
                                         <div className="med">
-                                            <img src="image 7.png" alt="" />
+                                            <img src={lapis} alt="" />
                                         </div>
                                     </div>
                                 </div>
                             )
-
+                            
                         })
                     }
+                    
                 </section>
-                <img className="criar" src="image 6.png" alt="" />
+                <button onClick={() => criarCardCadastrar}><img className="criar" src={criar} alt="" /></button> 
             </section>
         );
     }
